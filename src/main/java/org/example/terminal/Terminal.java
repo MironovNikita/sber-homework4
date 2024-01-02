@@ -1,7 +1,7 @@
 package org.example.terminal;
 
 public interface Terminal {
-    int checkAccountBalance();
+    double checkBalance();
 
     void withdrawMoney(int amount);
 
@@ -9,5 +9,5 @@ public interface Terminal {
 
     boolean authorization();
 
-    void printMenu();
+    void finishSession();
 }

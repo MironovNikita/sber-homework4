@@ -1,6 +1,8 @@
 package org.example.terminal;
 
 import org.example.exception.AccountsLockedException;
+import org.example.exception.IncorrectSumException;
+import org.example.server.TerminalServer;
 import org.example.validation.PinValidator;
 
 public class TerminalImpl implements Terminal {
@@ -12,6 +14,7 @@ public class TerminalImpl implements Terminal {
         this.pinValidator = pinValidator;
     }
 
+    @Override
     public boolean authorization() {
         boolean isAuthorized = false;
         while (!pinValidator.getIsAuthorized()) {
@@ -25,24 +28,28 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void printMenu() {
-        System.out.println("\nДобро пожаловать, дорогой пользователь!\nБудет выводиться меню банкомата");
+    public double checkBalance() {
+        return server.checkBalance();
     }
 
     @Override
-    public int checkAccountBalance() {
-        return 0;
+    public void withdrawMoney(int withdrawal) {
+        if (withdrawal % 100 != 0 || withdrawal <= 0) {
+            throw new IncorrectSumException(withdrawal);
+        }
+        server.withdrawMoney(withdrawal);
     }
 
     @Override
-    public void withdrawMoney(int amount) {
-
+    public void depositMoney(int deposit) {
+        if (deposit % 100 != 0 || deposit <= 0) {
+            throw new IncorrectSumException(deposit);
+        }
+        server.depositMoney(deposit);
     }
 
     @Override
-    public void depositMoney(int amount) {
-
+    public void finishSession() {
+        pinValidator.setAuthorized(false);
     }
-
-
 }

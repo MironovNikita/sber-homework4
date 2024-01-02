@@ -7,10 +7,6 @@ import java.util.Scanner;
 public class PinValidator {
     private static final char[] PIN = {'1', '5', '7', '4'};
     private static final int ATTEMPTS = 3;
-
-    /**
-     * TODO Исправить время блокировки на 10 секунд согласно ТЗ
-     */
     private static final long LOCK_TIME_SECONDS = 10;
 
     private int failedAttempts;
@@ -23,7 +19,7 @@ public class PinValidator {
     }
 
     public boolean authorization() throws AccountsLockedException {
-        System.out.println("Введите пин-код: ");
+        System.out.print("Введите пин-код: ");
 
         Scanner scanner = new Scanner(System.in);
         boolean verifiedPin = checkCode(scanner);
@@ -35,14 +31,14 @@ public class PinValidator {
             isAuthorized = true;
         } else if (failedAttempts != 3) {
             failedAttempts++;
-            System.out.printf("Введён неверный пин-код. Осталось %d попытки(-а)\n", ATTEMPTS - failedAttempts);
+            System.out.printf("Введён неверный пин-код. Осталось попыток: %d\n", ATTEMPTS - failedAttempts);
         }
 
         if (failedAttempts == 3 && unlockTime == 0L) {
             unlockTime = getCurrentTime() + LOCK_TIME_SECONDS;
         }
 
-        if (getCurrentTime() < unlockTime) {
+        if (getCurrentTime() <= unlockTime) {
             throw new AccountsLockedException(unlockTime - getCurrentTime());
         }
 
@@ -74,6 +70,10 @@ public class PinValidator {
             if (PIN[i] != pinToCheck[i]) return false;
         }
         return true;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        isAuthorized = authorized;
     }
 
     public boolean getIsAuthorized() {
