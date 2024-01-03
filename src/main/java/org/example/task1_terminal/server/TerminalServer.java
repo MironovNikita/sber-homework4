@@ -1,4 +1,4 @@
-package org.example.server;
+package org.example.task1_terminal.server;
 
 public interface TerminalServer {
     double checkBalance();

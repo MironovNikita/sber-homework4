@@ -1,8 +1,8 @@
-package org.example.terminal.view;
+package org.example.task1_terminal.terminal.view;
 
-import org.example.exception.IncorrectSumException;
-import org.example.exception.NotEnoughFundsException;
-import org.example.terminal.Terminal;
+import org.example.task1_terminal.exception.IncorrectSumException;
+import org.example.task1_terminal.exception.NotEnoughFundsException;
+import org.example.task1_terminal.terminal.Terminal;
 
 import java.util.Scanner;
 

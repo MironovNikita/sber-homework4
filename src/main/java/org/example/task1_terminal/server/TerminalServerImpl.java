@@ -1,6 +1,6 @@
-package org.example.server;
+package org.example.task1_terminal.server;
 
-import org.example.exception.NotEnoughFundsException;
+import org.example.task1_terminal.exception.NotEnoughFundsException;
 
 public class TerminalServerImpl implements TerminalServer {
     private static double balance = 0.00;

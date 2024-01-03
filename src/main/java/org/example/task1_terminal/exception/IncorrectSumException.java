@@ -1,4 +1,4 @@
-package org.example.exception;
+package org.example.task1_terminal.exception;
 
 public class IncorrectSumException extends RuntimeException {
     public IncorrectSumException(int amount) {

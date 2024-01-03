@@ -1,6 +1,6 @@
-package org.example.validation;
+package org.example.task1_terminal.validation;
 
-import org.example.exception.AccountsLockedException;
+import org.example.task1_terminal.exception.AccountsLockedException;
 
 import java.util.Scanner;
 

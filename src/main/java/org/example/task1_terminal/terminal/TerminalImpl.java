@@ -1,9 +1,9 @@
-package org.example.terminal;
+package org.example.task1_terminal.terminal;
 
-import org.example.exception.AccountsLockedException;
-import org.example.exception.IncorrectSumException;
-import org.example.server.TerminalServer;
-import org.example.validation.PinValidator;
+import org.example.task1_terminal.exception.AccountsLockedException;
+import org.example.task1_terminal.exception.IncorrectSumException;
+import org.example.task1_terminal.server.TerminalServer;
+import org.example.task1_terminal.validation.PinValidator;
 
 public class TerminalImpl implements Terminal {
     private final TerminalServer server;
@@ -16,6 +16,7 @@ public class TerminalImpl implements Terminal {
 
     @Override
     public boolean authorization() {
+        System.out.println("Добро пожаловать в наш банк!");
         boolean isAuthorized = false;
         while (!pinValidator.getIsAuthorized()) {
             try {

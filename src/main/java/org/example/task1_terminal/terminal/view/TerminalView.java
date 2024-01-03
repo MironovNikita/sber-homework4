@@ -1,4 +1,4 @@
-package org.example.terminal.view;
+package org.example.task1_terminal.terminal.view;
 
 import java.util.Scanner;
 

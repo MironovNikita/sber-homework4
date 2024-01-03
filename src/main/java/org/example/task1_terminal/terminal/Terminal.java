@@ -1,4 +1,4 @@
-package org.example.terminal;
+package org.example.task1_terminal.terminal;
 
 public interface Terminal {
     double checkBalance();

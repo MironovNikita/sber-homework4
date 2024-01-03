@@ -1,12 +1,15 @@
 package org.example;
 
-import org.example.server.TerminalServerImpl;
-import org.example.terminal.Terminal;
-import org.example.terminal.TerminalImpl;
-import org.example.server.TerminalServer;
-import org.example.terminal.view.TerminalView;
-import org.example.terminal.view.TerminalViewImpl;
-import org.example.validation.PinValidator;
+import org.example.task1_terminal.server.TerminalServerImpl;
+import org.example.task1_terminal.terminal.Terminal;
+import org.example.task1_terminal.terminal.TerminalImpl;
+import org.example.task1_terminal.server.TerminalServer;
+import org.example.task1_terminal.terminal.view.TerminalView;
+import org.example.task1_terminal.terminal.view.TerminalViewImpl;
+import org.example.task1_terminal.validation.PinValidator;
+import org.example.task2_urlChecker.UrlReader;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,10 +18,26 @@ public class Main {
         Terminal terminal = new TerminalImpl(server, validator);
         TerminalView terminalView = new TerminalViewImpl(terminal);
 
-        System.out.println("Добро пожаловать в наш банк!");
+        Scanner scanner = new Scanner(System.in);
 
-        if (terminal.authorization()) {
-            terminalView.work();
+        System.out.print("""
+                \nЗдравствуйте! Какое упражнение запустить?
+                1 - Терминал банкомата
+                2 - Вывод содержимого сайта по его URL
+                0 - Выход
+                                
+                Ввод:""");
+
+        int choice = terminalView.checkIntInput(scanner);
+
+        switch (choice) {
+            case 1 -> {
+                if (terminal.authorization()) {
+                    terminalView.work();
+                }
+            }
+            case 2 -> UrlReader.readContent(UrlReader.acceptUrl());
+            case 0 -> System.exit(0);
         }
     }
 }

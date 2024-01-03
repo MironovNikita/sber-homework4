@@ -1,4 +1,4 @@
-package org.example.exception;
+package org.example.task1_terminal.exception;
 
 public class NotEnoughFundsException extends RuntimeException {
     public NotEnoughFundsException() {
