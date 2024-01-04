@@ -22,7 +22,7 @@ public class TerminalViewImpl implements TerminalView {
                 break;
             } else {
                 System.out.print("Не могу распознать число. Введите числовое значение: ");
-                scanner.next();
+                scanner.nextLine();
             }
         } while (true);
         return num;
@@ -59,10 +59,11 @@ public class TerminalViewImpl implements TerminalView {
 
                 case 2 -> {
                     System.out.println("Выбрано: снять деньги\nВведите сумму (кратно 100): ");
+                    scanner = new Scanner(System.in);
                     int withdrawal = checkIntInput(scanner);
-                    System.out.println("Направляю запрос на сервер...");
                     try {
                         terminal.withdrawMoney(withdrawal);
+                        System.out.println("Направляю запрос на сервер...");
                         System.out.println("\n========================================================");
                         System.out.printf("Успешно! Возьмите Ваши деньги!%nВаш текущий баланс: %.2f руб.%n",
                                 terminal.checkBalance());
@@ -75,10 +76,11 @@ public class TerminalViewImpl implements TerminalView {
 
                 case 3 -> {
                     System.out.println("Выбрано: внести деньги\nВведите сумму (кратно 100): ");
+                    scanner = new Scanner(System.in);
                     int deposit = checkIntInput(scanner);
-                    System.out.println("Направляю запрос на сервер...");
                     try {
                         terminal.depositMoney(deposit);
+                        System.out.println("Направляю запрос на сервер...");
                         System.out.println("\n========================================================");
                         System.out.printf("Успешно! Сумма %d руб. внесена!%nВаш текущий баланс: %.2f руб.%n",
                                 deposit, terminal.checkBalance());

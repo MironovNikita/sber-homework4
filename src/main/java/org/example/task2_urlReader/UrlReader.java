@@ -1,8 +1,9 @@
-package org.example.task2_urlChecker;
+package org.example.task2_urlReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -26,6 +27,11 @@ public class UrlReader {
     public static void readContent(String url) {
         try {
             URL website = new URL(url);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            URL website = new URL(url);
             URLConnection connection = website.openConnection();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -41,6 +47,5 @@ public class UrlReader {
             System.out.println("Введён некорректный URL. Ошибка: " + exception.getMessage());
             readContent(acceptUrl());
         }
-
     }
 }
