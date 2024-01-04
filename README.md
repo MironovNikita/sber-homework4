@@ -128,11 +128,11 @@ class TerminalImpl {
 
 Результат выполнения запроса к сайту **`https://ya.ru`** (показан частично):
 
-![urlReader](https://github.com/MironovNikita/sber-homework2/blob/main/res/task2/urlReader.png)
+![urlReader](https://github.com/MironovNikita/sber-homework4/blob/main/res/task2/urlReader.png)
 
 В случае, если методу поступит некорректный URL или такого сайта не существует, приложение выведет соответствующие ошибки:
 
-![exceptions](https://github.com/MironovNikita/sber-homework2/blob/main/res/task2/exceptions.png)
+![exceptions](https://github.com/MironovNikita/sber-homework4/blob/main/res/task2/exceptions.png)
 
 
 ## Вопросы для самоконтроля
