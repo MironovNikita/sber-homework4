@@ -19,10 +19,10 @@ public class PinValidator {
     }
 
     public boolean authorization() throws AccountsLockedException {
-        System.out.print("Введите пин-код: ");
+        System.out.print("Введите пин-код:\n");
 
         Scanner scanner = new Scanner(System.in);
-        boolean verifiedPin = checkCode(scanner);
+        boolean verifiedPin = checkCode(pinInput(scanner));
         accountLockTimeCheck();
 
         if (verifiedPin && getCurrentTime() > unlockTime) {
@@ -56,18 +56,35 @@ public class PinValidator {
         }
     }
 
-    private boolean checkCode(Scanner scanner) {
-        int code;
+    private char[] pinInput(Scanner scanner) {
+        char[] checkPin = new char[4];
+        char inputChar;
+        boolean validChar;
 
-        if (scanner.hasNextInt()) code = scanner.nextInt();
-        else return false;
+        for (int i = 0; i < PIN.length; i++) {
+            validChar = false;
 
-        if (String.valueOf(code).length() != 4) {
+            System.out.print("Введите " + (i + 1) + " цифру пароля: ");
+            while (!validChar) {
+                inputChar = scanner.nextLine().charAt(0);
+                if (Character.isDigit(inputChar)) {
+                    checkPin[i] = inputChar;
+                    validChar = true;
+                } else {
+                    System.out.print("Для " + (i + 1) + " цифры пароля требуется символ, являющийся числом: ");
+                }
+            }
+        }
+        return checkPin;
+    }
+
+    private boolean checkCode(char[] pinInput) {
+        if (pinInput.length != 4) {
             return false;
         }
-        char[] pinToCheck = ("" + code).toCharArray();
+
         for (int i = 0; i < 4; i++) {
-            if (PIN[i] != pinToCheck[i]) return false;
+            if (PIN[i] != pinInput[i]) return false;
         }
         return true;
     }
